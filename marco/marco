@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+
+import sys
+
+from PIL import Image
+
+help = """USAGE
+    marco GROSOR R G B IMÁGENES..."""
+
+def main():
+    if len(sys.argv) < 6:
+        print(help)
+        sys.exit(1)
+
+    try:
+        margin = int(sys.argv[1])
+        color = (int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]))
+        imagesFilePaths = sys.argv[5:]
+    except:
+        print(help)
+        sys.exit(1)
+
+    for fp in imagesFilePaths:
+        img = Image.open(fp)
+
+        newImg = img.copy().crop((-margin, -margin, img.width+margin, img.height+margin))
+
+        for x in range(margin):
+            for y in range(img.height+2*margin):
+                newImg.putpixel((x, y), color)
+                newImg.putpixel((img.width+margin+x, y), color)
+
+        for y in range(margin):
+            for x in range(img.width+2*margin):
+                newImg.putpixel((x, y), color)
+                newImg.putpixel((x, img.height+margin+y), color)
+
+        newFp = ".".join(fp.split(".")[:-1]) + "_marco." + fp.split(".")[-1]
+
+        newImg.save(newFp)
+        print("Image \"" + fp + "\" saved to " + newFp)
+
+if __name__ == "__main__":
+    main()

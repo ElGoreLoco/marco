@@ -1,21 +1,22 @@
 # marco
-Pone un marco de un color y grosor específico a fotos.
+It puts a frame of a specific color and thickness to photos.
 
-## Instalación
-Clona el repositorio:
+## Installation
+Clone the repository:
 
 ```
 git clone https://github.com/ElGoreLoco/marco.git
 cd marco
 ```
 
-Instala `python3`, `python3-pip` y `pillow`:
+Install `python3`, `python3-pip` and `pillow`:
 ```
 sudo apt-get install python3 python3-pip
 sudo pip3 install pillow
 ```
 
-Instala `marco`:
+Install `marco`:
 ```
 sudo python3 setup.py install
+ 
 ```
